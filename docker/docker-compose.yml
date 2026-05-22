@@ -1,0 +1,17 @@
+services:
+  api:
+    build:
+      context: ../api
+      dockerfile: CicdDashboard.Api/Dockerfile
+    ports:
+      - "5085:5085"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+
+  frontend:
+    build:
+      context: ../frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api

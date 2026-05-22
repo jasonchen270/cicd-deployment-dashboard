@@ -1,0 +1,31 @@
+{
+  "family": "cicd-dashboard-api",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "api",
+      "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/cicd-dashboard-api:latest",
+      "essential": true,
+      "portMappings": [{ "containerPort": 5085, "protocol": "tcp" }],
+      "environment": [{ "name": "ASPNETCORE_ENVIRONMENT", "value": "Production" }],
+      "healthCheck": {
+        "command": ["CMD-SHELL", "wget -qO- http://localhost:5085/api/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/cicd-dashboard-api",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
