@@ -8,36 +8,6 @@ A unified dashboard that surfaces build status from **GitHub Actions** and **Jen
 - **Deployment target**: AWS ECS (Fargate) behind an Application Load Balancer
 - **CI pipeline**: GitHub Actions, where tests gate every push before images are built and pushed to ECR
 
-## Repository layout
-
-```
-cicd-deployment-dashboard/
-├── api/                              # .NET solution
-│   ├── CicdDashboard.sln
-│   ├── CicdDashboard.Api/            # ASP.NET Core Web API
-│   │   ├── Controllers/              # BuildsController, HealthController
-│   │   ├── CiClients/                # ICiClient + GitHub/Jenkins implementations
-│   │   ├── Models/                   # Build, BuildStatus, BuildSource records
-│   │   ├── Services/                 # BuildAggregator
-│   │   ├── Program.cs
-│   │   └── Dockerfile
-│   └── CicdDashboard.Api.Tests/      # xUnit tests (18 tests)
-├── frontend/                         # Angular SPA
-│   ├── src/app/                      # standalone components + service
-│   ├── Dockerfile
-│   ├── nginx.conf                    # serves SPA and proxies /api/*
-│   └── karma.conf.js
-├── docker/
-│   └── docker-compose.yml            # local stack: api + frontend
-└── deploy/
-    ├── .github/workflows/ci.yml      # in a real repo this lives at the repo root
-    ├── ecs-task-api.json
-    ├── ecs-task-frontend.json
-    └── README.md                     # ECS/ALB deployment guide
-```
-
-> **Note:** GitHub Actions requires the workflow file at `.github/workflows/` of the repo root. It's parked under `deploy/` here so all deployment artifacts live together; copy it up one level when you initialize the real repo.
-
 ## API endpoints
 
 | Method | Path                              | Description                                          |
