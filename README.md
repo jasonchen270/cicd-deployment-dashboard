@@ -38,7 +38,3 @@ cd docker
 docker compose up --build
 # UI on http://localhost:8080 (nginx proxies /api/* to the API container)
 ```
-
-## Deployment
-
-See [`deploy/README.md`](deploy/README.md) for the ECS architecture diagram, AWS resource list, and bootstrap commands.
