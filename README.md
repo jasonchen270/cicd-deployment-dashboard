@@ -1,16 +1,14 @@
 # CI/CD Deployment Dashboard
 
-A unified dashboard that surfaces build status from **GitHub Actions** and **Jenkins**, letting developers retrigger failed jobs without leaving the UI.
+A unified dashboard that surfaces build status from GitHub Actions and Jenkins, letting developers retrigger failed jobs without leaving the UI. The API is a .NET 10 (ASP.NET Core) Web API and the frontend is Angular 18 with standalone components and signals, packaged with multi-stage Dockerfiles and docker-compose and deployed to AWS ECS (Fargate) behind an Application Load Balancer.
 
-- **API**: .NET 10 (ASP.NET Core) Web API with xUnit tests
-- **Frontend**: Angular 18 (standalone components, signals) with Karma/Jasmine tests
-- **Packaging**: Multi-stage Dockerfiles + docker-compose
-- **Deployment target**: AWS ECS (Fargate) behind an Application Load Balancer
-- **CI pipeline**: GitHub Actions, where tests gate every push before images are built and pushed to ECR
+## Prerequisites
 
-## Run locally
+- .NET 10 SDK
+- Node 20+ (or 25)
+- Docker (optional, for the docker compose run option)
 
-**Prereqs:** .NET 10 SDK, Node 20+ (or 25), and either Docker or run natively.
+## Usage
 
 ### Option 1: native (no Docker)
 
