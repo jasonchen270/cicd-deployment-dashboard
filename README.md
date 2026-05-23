@@ -8,19 +8,6 @@ A unified dashboard that surfaces build status from **GitHub Actions** and **Jen
 - **Deployment target**: AWS ECS (Fargate) behind an Application Load Balancer
 - **CI pipeline**: GitHub Actions, where tests gate every push before images are built and pushed to ECR
 
-## API endpoints
-
-| Method | Path                              | Description                                          |
-|--------|-----------------------------------|------------------------------------------------------|
-| GET    | `/api/builds`                     | List recent builds across all sources                |
-| GET    | `/api/builds?status=Failed`       | Filter by status (Queued/Running/Success/Failed/Canceled) |
-| GET    | `/api/builds?source=Jenkins`      | Filter by source (GitHubActions/Jenkins)             |
-| POST   | `/api/builds/{id}/retrigger`      | Retrigger a build; id prefix determines the client   |
-| GET    | `/api/health`                     | Liveness probe                                       |
-| GET    | `/swagger`                        | Swagger UI (Development env only)                    |
-
-The CI clients are seeded with deterministic mock data so the dashboard works out of the box without GitHub or Jenkins credentials. Swapping in real HTTP clients only requires editing `GitHubActionsClient.cs` / `JenkinsClient.cs`.
-
 ## Run locally
 
 **Prereqs:** .NET 10 SDK, Node 20+ (or 25), and either Docker or run natively.
@@ -51,18 +38,6 @@ cd docker
 docker compose up --build
 # UI on http://localhost:8080 (nginx proxies /api/* to the API container)
 ```
-
-## Tests
-
-```bash
-# Backend (18 xUnit tests)
-cd api && dotnet test
-
-# Frontend (11 Karma/Jasmine tests)
-cd frontend && npm test
-```
-
-Total: **29 tests**, all passing.
 
 ## Deployment
 
