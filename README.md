@@ -1,6 +1,6 @@
 # CI/CD Deployment Dashboard
 
-A unified dashboard that surfaces build status from GitHub Actions and Jenkins, letting developers retrigger failed jobs without leaving the UI. The API is a .NET 10 (ASP.NET Core) Web API and the frontend is Angular 18 with standalone components and signals, packaged with multi-stage Dockerfiles and docker-compose and deployed to AWS ECS (Fargate) behind an Application Load Balancer.
+A unified dashboard that surfaces build status from GitHub Actions and Jenkins, letting developers retrigger failed jobs without leaving the UI. The API is a .NET 10 (ASP.NET Core) Web API and the frontend is Angular 18 with standalone components and signals.
 
 ## Prerequisites
 
